@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- configmap.yaml
+- deployment.yaml
+- service.yaml
+- prometheus-configmap.yaml
+- prometheus-deployment.yaml
+- prometheus-service.yaml
+- hotrod-deployment.yaml
+- hotrod-service.yaml
+
+namespace: default

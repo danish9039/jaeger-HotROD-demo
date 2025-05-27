@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-spm
+  labels:
+    app: jaeger-spm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger-spm
+  template:
+    metadata:
+      labels:
+        app: jaeger-spm
+        spm_metrics_source: "true"  # Label for Prometheus service discovery
+    spec:
+      containers:
+      - name: jaeger
+        image: jaegertracing/jaeger:latest
+        args: ["--config", "/etc/jaeger/config.yml"]
+        ports:
+        - containerPort: 16686
+          name: ui
+        - containerPort: 8888
+          name: metrics
+        - containerPort: 8889
+          name: prometheus
+        - containerPort: 4317
+          name: otlp-grpc
+        - containerPort: 4318
+          name: otlp-http
+        volumeMounts:
+        - name: jaeger-config
+          mountPath: /etc/jaeger
+      volumes:
+      - name: jaeger-config
+        configMap:
+          name: jaeger-spm-config

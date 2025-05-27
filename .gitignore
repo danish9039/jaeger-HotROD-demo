@@ -1,0 +1,37 @@
+# Kubernetes
+.kube/
+kubeconfig
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+tmp/
+
+# Environment variables
+.env
+.env.local
+
+# Binary files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Package files
+*.tar
+*.tar.gz
+*.zip

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  labels:
+    app: jaeger-spm
+spec:
+  ports:
+  - port: 16686
+    name: ui
+    targetPort: ui
+  - port: 8888
+    name: metrics
+    targetPort: metrics
+  - port: 8889
+    name: prometheus
+    targetPort: prometheus
+  - port: 4317
+    name: otlp-grpc
+    targetPort: otlp-grpc
+  - port: 4318
+    name: otlp-http
+    targetPort: otlp-http
+  selector:
+    app: jaeger-spm
